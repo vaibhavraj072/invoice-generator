@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Generator</title>
+    <link rel="stylesheet" href="../frontend2/styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Invoice Generator</h1>
+
+        <div class="invoice-form">
+            <label>Company Name: <input type="text" id="companyName"></label>
+            <label>Street Address: <input type="text" id="companyAddress"></label>
+            <label>ZIP Code: <input type="text" id="zipCode"></label>
+            <label>Phone Number: <input type="text" id="phone"></label>
+            <label>Email: <input type="email" id="email"></label>
+            
+            <h3>Billed To</h3>
+            <label>Client Name: <input type="text" id="clientName"></label>
+            <label>Client Company: <input type="text" id="clientCompany"></label>
+            <label>Client Address: <input type="text" id="clientAddress"></label>
+            
+            <h3>Invoice Details</h3>
+            <label>Invoice No: <input type="text" id="invoiceNo"></label>
+            <label>Invoice Date: <input type="date" id="invoiceDate"></label>
+            <label>Due Date: <input type="date" id="dueDate"></label>
+            
+            <h3>Items</h3>
+            <table id="itemsTable">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Qty</th>
+                        <th>Unit Price</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="itemsBody"></tbody>
+            </table>
+            <button onclick="addItem()">Add Item</button>
+
+            <h3>Payment Information</h3>
+            <label>Bank Name: <input type="text" id="bank"></label>
+            <label>Account No: <input type="text" id="account"></label>
+            <label>IFSC Code: <input type="text" id="ifsc"></label>
+
+            <button id="generatePDF">Download PDF</button>
+        </div>
+
+        <div id="invoice-preview">
+            <h2>Invoice Preview</h2>
+            <div id="invoice-output"></div>
+        </div>
+    </div>
+
+    <script src="../frontend2/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</body>
+</html>
