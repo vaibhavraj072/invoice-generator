@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #f8f9fa;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.invoice {
+    padding: 20px;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
+h2, h3 {
+    margin: 5px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.summary p {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+img {
+    max-width: 150px;
+    margin-top: 10px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Generator</title>
+    <link rel="stylesheet" href="../frontend3/styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <input type="file" id="logoUpload" accept="image/*">
+        <button onclick="uploadLogo()">Upload Logo</button>
+        
+        <div class="invoice" id="invoice">
+            <div class="header">
+                <div class="company-info">
+                    <img id="companyLogo" src="" alt="Company Logo">
+                    <h2 contenteditable="true">COMPANY NAME</h2>
+                    <p contenteditable="true">Street Address</p>
+                    <p contenteditable="true">ZIP Code</p>
+                    <p contenteditable="true">Phone Number</p>
+                    <p contenteditable="true">E-mail</p>
+                </div>
+            </div>
+
+            <div class="details">
+                <div>
+                    <h3>BILL TO</h3>
+                    <p contenteditable="true">Contact Name</p>
+                    <p contenteditable="true">Client Company Name</p>
+                    <p contenteditable="true">Street Address</p>
+                    <p contenteditable="true">City, State, Country</p>
+                    <p contenteditable="true">ZIP Code</p>
+                </div>
+                <div>
+                    <h3>INVOICE DETAILS</h3>
+                    <p>Invoice No: <span contenteditable="true">#12344</span></p>
+                    <p>Invoice Date: <span contenteditable="true">mm/dd/yyyy</span></p>
+                    <p>Due Date: <span contenteditable="true">mm/dd/yyyy</span></p>
+                    <p>Terms: <span contenteditable="true">Net 30</span></p>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Qty</th>
+                        <th>Unit Price</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="invoiceItems">
+                    <tr>
+                        <td contenteditable="true">Item 1</td>
+                        <td contenteditable="true" oninput="calculateTotal()">1</td>
+                        <td contenteditable="true" oninput="calculateTotal()">0.00</td>
+                        <td class="amount">0.00</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button onclick="addRow()">Add Item</button>
+
+            <div class="summary">
+                <p>Subtotal: ₹<span id="subtotal">0.00</span></p>
+                <p>Tax: ₹<span id="tax">0.00</span></p>
+                <p>Discount: ₹<span id="discount">0.00</span></p>
+                <p><strong>Total Due: ₹<span id="totalDue">0.00</span></strong></p>
+            </div>
+
+            <div class="footer">
+                <h3>Payment Information</h3>
+                <div>
+                    <p>Payment by UPI</p>
+                    <input type="file" id="qrUpload" accept="image/*">
+                    <button onclick="uploadQR()">Upload QR</button>
+                    <img id="paymentQR" src="" alt="QR Code">
+                </div>
+                <div>
+                    <p>Payment by Account</p>
+                    <p contenteditable="true">Bank: </p>
+                    <p contenteditable="true">Acc No: </p>
+                    <p contenteditable="true">IFSC Code: </p>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="downloadPDF()">Download Invoice</button>
+    </div>
+
+    <script src="../frontend3/script.js"></script>
+</body>
+</html>
