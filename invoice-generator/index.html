@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="invoice" id="invoice">
+            <div class="header">
+                <div class="company-info" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="line-height: 0.75;">
+                        <h3>INVOICE DETAILS</h3>
+                        <p>Invoice No: <span id="invoiceNumber" contenteditable="false">#yymm-1012</span></p>
+                        <p>Invoice Date: <span id="invoiceDate" contenteditable="true">dd/mm/yyyy</span></p>
+                        <p>Due Date: <span id="dueDate" contenteditable="false">dd/mm/yyyy</span></p>
+                    </div>
+                    
+                    <img id="companyLogo" src="images/logo.png" alt="Company Logo" style="width: 150px; height: auto; display: block;">
+                </div>
+            </div>
+
+            <div class="details" style="display: flex; justify-content: space-between;">
+                <div class="billed-by">
+                    <h3>Billed By</h3>
+                    <div contenteditable="false">
+                        <p><strong>theYukt</strong></p>
+                        <p>Greater Noida</p>
+                        <p>Uttar Pradesh, India</p>
+                        <p><strong>Email:</strong> info.vbajaj@gmail.com</p>
+                        <p><strong>Phone Number:</strong> +91 9599002336</p>
+                    </div>
+                </div>
+                <div class="billed-to">
+                    <h3>Billed To</h3>
+                    <div contenteditable="true" class="billed-to-content">
+                        <p><strong>Client Name</strong></p>
+                        <p>IILM University</p>
+                        <p>Greater Noida</p>
+                        <p>Uttar Pradesh, India</p>
+                        <p><strong>Email:</strong> nisha.singh.cs28@iilm.edu</p>
+                        <p><strong>Phone Number:</strong> +91 74885 31344</p>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="invoice-container">
+
+            
+            <table id="invoiceItems">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Qty</th>
+                        <th>Unit Price</th>
+                        <th>Amount</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="invoiceBody">
+                    <tr>
+                        <td contenteditable="true">Item 1</td>
+                        <td contenteditable="true" class="qty" oninput="calculateTotal()">1</td>
+                        <td contenteditable="true" class="unitPrice" oninput="calculateTotal()">0.00</td>
+                        <td class="amount">0.00</td>
+                        <td><button onclick="removeItem(this)">Remove</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button onclick="addItem()">➕ Add Item</button>
+            
+            <div id="invoiceContent">
+        
+            <div class="payment-status">
+                <div class="stats">
+                    <label><strong>Payment Status:</strong></label>
+                    <select id="paymentStatus" onchange="updateStamp()">
+                        <option value="unpaid">Unpaid</option>
+                        <option value="partial">Partial Paid</option>
+                        <option value="fully">Fully Paid</option>
+                    </select>
+                </div>
+                
+                <img id="paymentStamp" src="" alt="Payment Status">
+            </div>
+        
+            <table id="summaryTable">
+                <tr>
+                    <td class="label">Subtotal (in INR):</td>
+                    <td class="value"><span id="subtotal">0.00</span></td>
+                </tr>
+                <tr>
+                    <td class="label">Discount (Percent):</td>
+                    <td class="value" contenteditable="true" oninput="calculateTotal()" id="discount">0</td>
+                </tr>
+                <tr>
+                    <td class="label">Round Off (in INR):</td>
+                    <td class="value"><span id="roundOff">0.00</span></td>
+                </tr>
+                <tr>
+                    <td class="label"><strong>Total Due (in INR):</strong></td>
+                    <td class="value"><strong><span id="totalDue">0.00</span></strong></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><em>Total in Words: <span id="totalInWords"></span> </em></td>
+                </tr>
+            </table>
+            </div>
+
+</div>
+            <div class="footer">
+                <h3 style="margin-top: 18px;">Payment Information</h3>
+                <div class="payment">
+                    <div style="line-height: .55;  margin-left: 28px;">
+                        <h2>Payment by Account</h2>
+                        <p contenteditable="false">Bank: Unity Small Finance Bank</p>
+                        <p contenteditable="false">Acc No: 060520991002491</p>
+                        <p contenteditable="false">IFSC Code: UNBA0000605</p>
+                    </div>
+                    <div style="margin-right: 28px;">
+                        <h2>Payment by UPI</h2>
+                        <img src="images/QR_code.jpg" alt="Payment via QR Code">
+                    </div>
+                </div>
+            </div>
+
+            <div class="terms-conditions">
+                <h3>Terms and Conditions</h3>
+                <p contenteditable="false">
+                    1. No Refund Policy – Payments made for the services are non-refundable once the work has begun.<br>
+                    2. Late payments may be subject to additional charges.<br>
+                    3. The project’s source code will only be transferred after complete payment is received.<br>
+                    4. Please quote the invoice number when making the payment.<br>
+                    5. For any queries, contact us at info.vbajaj@gmail.com.
+                </p>
+            </div>
+
+            <div style="text-align: center;"> For any enquiry, reach out via email at 
+                <strong>info.vbajaj@gmail.com</strong>, call on 
+                <strong>+91 9599002336</strong></div>
+
+        </div>
+        
+        <button onclick="downloadPDF()">Generate Invoice</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
