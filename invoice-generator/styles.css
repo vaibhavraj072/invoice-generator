@@ -132,6 +132,6 @@ thead{
 /* Payment Stamp */
 #paymentStamp {
     margin-top: 10px;
-    max-width: 120px;
+    max-width: 240px;
     display: none;
 }
