@@ -59,3 +59,10 @@ button {
 button:hover {
     background: #0056b3;
 }
+
+#companyLogo {
+    width: 150px; /* Set desired width */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensure the image is visible */
+    margin-bottom: 10px; /* Add spacing */
+}
